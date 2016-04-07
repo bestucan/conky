@@ -1,0 +1,134 @@
+### Conky settings ###
+
+background yes
+update_interval 1
+
+cpu_avg_samples 2
+net_avg_samples 2
+
+override_utf8_locale yes
+
+double_buffer yes
+no_buffers yes
+
+#text_buffer_size 2048
+
+
+### Window specifications ###
+
+own_window yes
+#own_window_type conky
+#own_window_transparent yes
+own_window_argb_visual yes
+own_window_argb_value 0
+
+#own_window_class Conky
+
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+own_window_colour black
+
+
+border_inner_margin 0
+border_outer_margin 5
+
+
+### Adjust Accoring to screen ###
+
+minimum_size 300 560
+#maximum_width 1366
+
+alignment top_right
+gap_x 5
+gap_y 30
+
+
+### Graphics settings ###
+
+draw_shades no
+draw_outline no
+draw_borders no
+border_width 1
+draw_graph_borders no
+
+
+### Color settings ###
+
+default_color gray
+default_outline_color blue
+default_shade_color blue
+color2 59BFFF
+color5 1CBDBA
+color5 CCCCCC
+
+color1 00f5ff
+color3 00f5ff
+color4 ff7f50
+color4 ff0000
+
+
+### Text settings ###
+
+use_xft yes
+xftfont Monospace Regular:size=12
+#xftalpha 0.5
+uppercase no
+temperature_unit celsius
+short_units
+
+stippled_borders 1
+use_spacer right
+show_graph_scale no
+show_graph_range no
+out_to_console no
+out_to_stderr no
+extra_newline no
+
+
+
+TEXT
+${font Monospace Regular:style=Bold:pixelsize=22}${color gray}${alignc}${nodename}${font :pixelsize=17}
+${offset 20}${color1}${uptime_short}${alignr}${color4}${exec sensors | grep 'temp1:        +' | cut -c16-17}°C
+${font :style=Bold:pixelsize=18}${color gray}STORAGE$hr${font Monospace Regular:pixelsize=17}
+${offset 20}${color1}/ ${alignr}${color1}${fs_free /} / ${fs_size /}
+${offset 20}${color3}${fs_bar 6,280 /}
+${offset 20}${color1}/home ${alignr}${color1}${fs_free /home}${color1} / ${fs_size /home}
+${offset 20}${color3}${fs_bar 6,280 /home}
+${offset 20}${color1}Disk ${alignr}${color4}${exec hddtemp /dev/sda -n -u=C}°C
+${offset 20}${color3}I${alignr}${diskiograph_write 25,260 000000 CCCCCC}
+${offset 20}${color3}O${alignr}${diskiograph_read 25,260 000000 CCCCCC}
+${offset 20}${color1}Memory ${memperc}% ${alignr}${mem} / ${memmax}
+${offset 20}${color3}${membar 6,280}
+${offset 20}${color1}Swap ${swapperc}% ${alignr}${swap} / ${swapmax}
+${offset 20}${color3}${swapbar 6,280}
+
+${color gray}${font :style=Bold:pixelsize=18}CPU$hr${font Monospace Regular:pixelsize=17}
+${offset 20}${color1}Core 1 ${color4}${exec sensors | grep 'Core 0:' | cut -c18-19}°C${alignr}${color1}Core 2 ${color4}${exec sensors | grep 'Core 1:' | cut -c18-19}°C
+${offset 20}${color gray}${cpugauge 50,100 cpu1}${alignr}${cpugauge 50,100 cpu2}
+${offset 20}${color1}${freq_g 1}GHz | ${cpu cpu1}%${alignr}${freq_g 2}GHz | ${cpu cpu2}%
+${offset 20}${color3}${cpugraph 35,280 000000 CCCCCC}
+
+${color gray}${font :style=Bold:pixelsize=18}NETWORK$hr${font Monospace Regular:pixelsize=17}
+${offset 20}${color1}IP addr ${alignr} ${color1} ${addr wlan0}
+${offset 20}${color1}Receiving${alignr}${downspeed wlan0}
+${offset 20}${color3}${downspeedgraph wlan0 30,280 000000 CCCCCC}
+${offset 20}${color1}Sending${alignr}${upspeed wlan0}
+${offset 20}${color3}${upspeedgraph wlan0 30,280 000000 CCCCCC}
+
+
+
+
+#${color #db7093}
+#${font Liberation Sans:style=Bold:pixelsize=30}${alignc}${time %H:%M}
+#${font Liberation Sans:pixelsize=30}${alignc}${time %b%d}${font Liberation Sans:pixelsize=16}
+#${color #59BFFF}CPU1  $color${cpu cpu1}% ${cpubar 4}
+#${color #59BFFF}CPU2  $color${cpu cpu2}% ${cpubar 4}
+
+#own_window_type normal
+#draw_shades yes
+#draw_outline no
+#draw_borders no
+#draw_graph_borders no
+#default_color ffffff
+#default_shade_color 000000
+#default_outline_color 000000
+#${color #59BFFF}${font Liberation Sans:style=Blod:size=17}${time %Y-%m-%d %H:%M}

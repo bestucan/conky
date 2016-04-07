@@ -1,0 +1,120 @@
+### Conky settings ###
+
+background yes
+update_interval 1
+
+cpu_avg_samples 2
+net_avg_samples 2
+
+override_utf8_locale yes
+
+double_buffer yes
+no_buffers yes
+
+#text_buffer_size 2048
+
+
+### Window specifications ###
+
+own_window yes
+#own_window_type conky
+#own_window_transparent yes
+own_window_argb_visual yes
+own_window_argb_value 0
+
+#own_window_class Conky
+
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+own_window_colour black
+
+
+border_inner_margin 0
+border_outer_margin 5
+
+
+### Adjust Accoring to screen ###
+
+minimum_size 300 768
+#maximum_width 1366
+
+alignment top_left
+gap_x 5
+gap_y 30
+
+
+### Graphics settings ###
+
+draw_shades no
+draw_outline no
+draw_borders no
+border_width 1
+draw_graph_borders no
+
+
+### Color settings ###
+
+default_color gray
+default_outline_color blue
+default_shade_color blue
+color2 59BFFF
+color4 1CBDBA
+color5 CCCCCC
+
+color1 00f5ff
+color3 00f5ff
+
+
+### Text settings ###
+
+use_xft yes
+xftfont Monospace Regular:size=12
+#xftalpha 0.5
+uppercase no
+temperature_unit celsius
+short_units
+
+stippled_borders 1
+use_spacer right
+show_graph_scale no
+show_graph_range no
+out_to_console no
+out_to_stderr no
+extra_newline no
+
+
+
+TEXT
+${font Monospace Regular:style=Bold:pixelsize=22}${color gray}${alignc}lunar${execi 600 lunar | grep 'Lunar :' | cut -c8-19}${font Monospace Regular:pixelsize=17}${color1}
+${offset 15}${time %F}(${time %Vw-%jd})${alignr}${time %u-%A}
+${offset 15}UTC${time %z}${offset 55}${time %H:%M}${alignr}${time %B}
+${color gray}${font :style=Bold:pixelsize=18}PROCESS$hr${font Monospace Regular:pixelsize=17}
+${offset 15}${color1}Processes ${processes}
+${offset 15}Running ${running_processes}${alignr}${loadavg}
+${offset 15}${color gray}CPU${stippled_hr}
+${offset 25}${color1} ${top name 1} ${alignr} ${color1} ${top cpu 1}
+${offset 25}${color1} ${top name 2} ${alignr} ${color1} ${top cpu 2}
+${offset 25}${color1} ${top name 3} ${alignr} ${color1} ${top cpu 3}
+${offset 25}${color1} ${top name 4} ${alignr} ${color1} ${top cpu 4}
+${offset 25}${color1} ${top name 5} ${alignr} ${color1} ${top cpu 5}
+${offset 15}${color gray}MEMORY${stippled_hr}
+${offset 25}${color1} ${top_mem name 1} ${alignr} ${color1} ${top_mem mem 1}
+${offset 25}${color1} ${top_mem name 2} ${alignr} ${color1} ${top_mem mem 2}
+${offset 25}${color1} ${top_mem name 3} ${alignr} ${color1} ${top_mem mem 3}
+${offset 25}${color1} ${top_mem name 4} ${alignr} ${color1} ${top_mem mem 4}
+${offset 25}${color1} ${top_mem name 5} ${alignr} ${color1} ${top_mem mem 5}
+${offset 15}${color gray}I/O${stippled_hr}
+${offset 25}${color1} ${top_io name 1} ${alignr} ${color1} ${top_io io_perc 1}
+${offset 25}${color1} ${top_io name 2} ${alignr} ${color1} ${top_io io_perc 2}
+${offset 25}${color1} ${top_io name 3} ${alignr} ${color1} ${top_io io_perc 3}
+${offset 25}${color1} ${top_io name 4} ${alignr} ${color1} ${top_io io_perc 4}
+${offset 25}${color1} ${top_io name 5} ${alignr} ${color1} ${top_io io_perc 5}
+
+${color gray}${font :style=Bold:pixelsize=18}MOUNT$hr${font Monospace Regular:pixelsize=17}${color1}
+${if_mounted /media/can/TC_DRIVE}${offset 15}TC_DRIVE $alignr ${fs_used /media/can/TC_DRIVE} / ${fs_size /media/can/TC_DRIVE}
+${offset 15}${fs_bar 6,280 /media/can/TC_DRIVE}${endif}
+${if_mounted /media/can/TC_KT}${offset 15}TC_KT $alignr ${fs_used /media/can/TC_KT} / ${fs_size /media/can/TC_KT}
+${offset 15}${fs_bar 6,280 /media/can/TC_KT}${endif}
+${if_mounted /media/can/TC_KN}${offset 15}TC_KN $alignr ${fs_used /media/can/TC_KN} / ${fs_size /media/can/TC_KN}
+${offset 15}${fs_bar 6,280 /media/can/TC_HP}${endif}
+${if_mounted /media/can/TC_HP}${offset 15}TC_HP $alignr ${fs_used /media/can/TC_HP} / ${fs_size /media/can/TC_HP}
+${offset 15}${fs_bar 6,280 /media/can/TC_HP}${endif}
