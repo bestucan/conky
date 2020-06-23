@@ -1,0 +1,4 @@
+#!/bin/bash
+sleep 1;
+conky -c ~/.conky/.conkyrc_first &
+conky -c ~/.conky/.conkyrc_left
