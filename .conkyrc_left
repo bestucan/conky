@@ -1,7 +1,7 @@
 ### Conky settings ###
 
 background yes
-update_interval 1
+update_interval 5
 
 cpu_avg_samples 2
 net_avg_samples 2
@@ -57,11 +57,14 @@ default_color gray
 default_outline_color blue
 default_shade_color blue
 color2 59BFFF
-color4 1CBDBA
+# color4 1CBDBA
+color4 ff0000
 color5 CCCCCC
 
-color1 F3B171 #98BD5D #00f5ff
-color3 F3B171 #98BD5D #00f5ff
+# color1 F3B171 #98BD5D #00f5ff
+# color3 F3B171 #98BD5D #00f5ff
+color1 A6D061 #98BD5D #00f5ff
+color3 A6D061 #98BD5D #00f5ff
 
 
 ### Text settings ###
@@ -109,12 +112,8 @@ ${offset 25}${color1} ${top_io name 3} ${alignr} ${color1} ${top_io io_perc 3}
 ${offset 25}${color1} ${top_io name 4} ${alignr} ${color1} ${top_io io_perc 4}
 ${offset 25}${color1} ${top_io name 5} ${alignr} ${color1} ${top_io io_perc 5}
 
-${color gray}${font :style=Bold:pixelsize=18}MOUNT$hr${font Monospace Regular:pixelsize=17}${color1}
-${if_mounted /media/can/TC_DRIVE}${offset 15}TC_DRIVE $alignr ${fs_used /media/can/TC_DRIVE} / ${fs_size /media/can/TC_DRIVE}
-${offset 15}${fs_bar 6,280 /media/can/TC_DRIVE}${endif}
-${if_mounted /media/can/TC_KT}${offset 15}TC_KT $alignr ${fs_used /media/can/TC_KT} / ${fs_size /media/can/TC_KT}
-${offset 15}${fs_bar 6,280 /media/can/TC_KT}${endif}
-${if_mounted /media/can/TC_KN}${offset 15}TC_KN $alignr ${fs_used /media/can/TC_KN} / ${fs_size /media/can/TC_KN}
-${offset 15}${fs_bar 6,280 /media/can/TC_HP}${endif}
-${if_mounted /media/can/TC_HP}${offset 15}TC_HP $alignr ${fs_used /media/can/TC_HP} / ${fs_size /media/can/TC_HP}
-${offset 15}${fs_bar 6,280 /media/can/TC_HP}${endif}
+#${color gray}${font :style=Bold:pixelsize=18}MUSIC$hr${font Monospace Regular:pixelsize=17}${color1}
+#${if_mpd_playing}${font WenQuanYi Micro Hei :style=Bold:pixelsize=18}${offset 20}${mpd_title}-${mpd_artist}
+#${offset 20}radom:${mpd_random} repeat:${mpd_repeat}$alignr${mpd_status}
+#${offset 20}${mpd_bar 10,280}
+#${offset 20}volume:${mpd_vol}$alignr${mpd_elapsed}/${mpd_length}${endif}
