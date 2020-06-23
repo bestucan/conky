@@ -2,3 +2,7 @@
 sleep 1;
 conky -c ~/.conky/.conkyrc_first &
 conky -c ~/.conky/.conkyrc_left
+
+#sudo apt install lm-sensors hddtemp lunar
+#sudo chmod u+s /sbin/hddtemp
+#sudo ln -s /sbin/hddtemp /bin/hddtemp
