@@ -1,92 +1,95 @@
 ### Conky settings ###
 
-background yes
-update_interval 5
+conky.config = {
 
-cpu_avg_samples 2
-net_avg_samples 2
+--[[alignment = 'top_left',
+gap_x = 5,
+gap_y = 30,]]
 
-override_utf8_locale yes
+background = true,
+update_interval = 5,
 
-double_buffer yes
-no_buffers yes
+cpu_avg_samples = 2,
+net_avg_samples = 2,
 
-#text_buffer_size 2048
+override_utf8_locale = true,
 
+double_buffer = true,
+--[[false_buffers = true,]]
 
-### Window specifications ###
-
-own_window yes
-#own_window_type conky
-#own_window_transparent yes
-own_window_argb_visual yes
-own_window_argb_value 0
-
-#own_window_class Conky
-
-own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
-own_window_colour black
+--[[#text_buffer_size = 2048]]
 
 
-border_inner_margin 0
-border_outer_margin 5
+--[[### Window specifications ###]]
+
+own_window = true,
+--[[#own_window_type = conky,
+#own_window_transparent = true,]]
+own_window_argb_visual = true,
+own_window_argb_value = 0,
+
+--[[#own_window_class Conky]]
+
+own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+own_window_colour = 'black',
 
 
-### Adjust Accoring to screen ###
-
-minimum_size 300 768
-#maximum_width 1366
-
-alignment top_left
-gap_x 5
-gap_y 30
+border_inner_margin = 0,
+border_outer_margin = 5,
 
 
-### Graphics settings ###
+--[[### Adjust Accoring to screen ###]]
 
-draw_shades no
-draw_outline no
-draw_borders no
-border_width 1
-draw_graph_borders no
-
-
-### Color settings ###
-
-default_color gray
-default_outline_color blue
-default_shade_color blue
-color2 59BFFF
-# color4 1CBDBA
-color4 ff0000
-color5 CCCCCC
-
-# color1 F3B171 #98BD5D #00f5ff
-# color3 F3B171 #98BD5D #00f5ff
-color1 A6D061 #98BD5D #00f5ff
-color3 A6D061 #98BD5D #00f5ff
-
-
-### Text settings ###
-
-use_xft yes
-xftfont Monospace Regular:size=12
-#xftalpha 0.5
-uppercase no
-temperature_unit celsius
-short_units
-
-stippled_borders 1
-use_spacer right
-show_graph_scale no
-show_graph_range no
-out_to_console no
-out_to_stderr no
-extra_newline no
+minimum_height = 768,
+minimum_width =300,
+--[[#maximum_width = 1366]]
 
 
 
-TEXT
+--[[### Graphics settings ###]]
+
+draw_shades = false,
+draw_outline = false,
+draw_borders = false,
+border_width = 1,
+draw_graph_borders = false,
+
+
+--[[### Color settings ###]]
+
+default_color = gray,
+default_outline_color = blue,
+default_shade_color = blue,
+color2 = '59BFFF',
+--[[# color4 = '1CBDBA',]]
+color4 = 'ff0000',
+color5 = 'CCCCCC',
+
+--[[# color1 = 'F3B171', #98BD5D #00f5ff
+# color3 = 'F3B171', #98BD5D #00f5ff]]
+color1 = 'A6D061', --[[#98BD5D #00f5ff]]
+color3 = 'A6D061', --[[#98BD5D #00f5ff]]
+
+
+--[[### Text settings ###]]
+use_xft = true,
+--[[#xftfont = 'Monospace Regular:size=12',]]
+font = 'WenQuanYi Zen hei Mono:size=12',
+--[[#xftalpha 0.5,]]
+uppercase = false,
+temperature_unit = celsius,
+short_units,
+
+stippled_borders = 1,
+use_spacer = right,
+show_graph_scale = false,
+show_graph_range = false,
+out_to_console = false,
+out_to_stderr = false,
+extra_newline =  false
+}
+
+conky.text = [[
 ${font Monospace Regular:style=Bold:pixelsize=22}${color gray}${alignc}lunar${execi 600 lunar | grep 'Lunar :' | cut -c8-19}${font Monospace Regular:pixelsize=17}${color1}
 ${offset 15}${time %F}(${time %Vw-%jd})${alignr}${time %u-%A}
 ${offset 15}UTC${time %z}${offset 55}${time %H:%M}${alignr}${time %B}
@@ -94,26 +97,30 @@ ${color gray}${font :style=Bold:pixelsize=18}PROCESS$hr${font Monospace Regular:
 ${offset 15}${color1}Processes ${processes}
 ${offset 15}Running ${running_processes}${alignr}${loadavg}
 ${offset 15}${color gray}CPU${stippled_hr}
-${offset 25}${color1} ${top name 1} ${alignr} ${color1} ${top cpu 1}
-${offset 25}${color1} ${top name 2} ${alignr} ${color1} ${top cpu 2}
-${offset 25}${color1} ${top name 3} ${alignr} ${color1} ${top cpu 3}
-${offset 25}${color1} ${top name 4} ${alignr} ${color1} ${top cpu 4}
-${offset 25}${color1} ${top name 5} ${alignr} ${color1} ${top cpu 5}
+${offset 25}${color1} ${top name 1} ${alignr} ${top cpu 1}
+${offset 25} ${top name 2} ${alignr} ${top cpu 2}
+${offset 25} ${top name 3} ${alignr} ${top cpu 3}
+${offset 25} ${top name 4} ${alignr} ${top cpu 4}
+${offset 25} ${top name 5} ${alignr} ${top cpu 5}
 ${offset 15}${color gray}MEMORY${stippled_hr}
-${offset 25}${color1} ${top_mem name 1} ${alignr} ${color1} ${top_mem mem 1}
-${offset 25}${color1} ${top_mem name 2} ${alignr} ${color1} ${top_mem mem 2}
-${offset 25}${color1} ${top_mem name 3} ${alignr} ${color1} ${top_mem mem 3}
-${offset 25}${color1} ${top_mem name 4} ${alignr} ${color1} ${top_mem mem 4}
-${offset 25}${color1} ${top_mem name 5} ${alignr} ${color1} ${top_mem mem 5}
+${offset 25}${color1} ${top_mem name 1} ${alignr} ${color1} ${top_mem mem_res 1}
+${offset 25} ${top_mem name 2} ${alignr} ${top_mem mem_res 2}
+${offset 25} ${top_mem name 3} ${alignr} ${top_mem mem_res 3}
+${offset 25} ${top_mem name 4} ${alignr} ${top_mem mem_res 4}
+${offset 25} ${top_mem name 5} ${alignr} ${top_mem mem_res 5}
 ${offset 15}${color gray}I/O${stippled_hr}
-${offset 25}${color1} ${top_io name 1} ${alignr} ${color1} ${top_io io_perc 1}
-${offset 25}${color1} ${top_io name 2} ${alignr} ${color1} ${top_io io_perc 2}
-${offset 25}${color1} ${top_io name 3} ${alignr} ${color1} ${top_io io_perc 3}
-${offset 25}${color1} ${top_io name 4} ${alignr} ${color1} ${top_io io_perc 4}
-${offset 25}${color1} ${top_io name 5} ${alignr} ${color1} ${top_io io_perc 5}
+${offset 25}${color1} ${top_io name 1} ${alignr} ${top_io io_perc 1}
+${offset 25} ${top_io name 2} ${alignr} ${top_io io_perc 2}
+${offset 25} ${top_io name 3} ${alignr} ${top_io io_perc 3}
+${offset 25} ${top_io name 4} ${alignr} ${top_io io_perc 4}
+${offset 25} ${top_io name 5} ${alignr} ${top_io io_perc 5}
+${color gray}${font :style=Bold:pixelsize=18}AGENDA$hr${font Monospace Regular:pixelsize=17}
+
 
 #${color gray}${font :style=Bold:pixelsize=18}MUSIC$hr${font Monospace Regular:pixelsize=17}${color1}
 #${if_mpd_playing}${font WenQuanYi Micro Hei :style=Bold:pixelsize=18}${offset 20}${mpd_title}-${mpd_artist}
 #${offset 20}radom:${mpd_random} repeat:${mpd_repeat}$alignr${mpd_status}
 #${offset 20}${mpd_bar 10,280}
 #${offset 20}volume:${mpd_vol}$alignr${mpd_elapsed}/${mpd_length}${endif}
+
+]]

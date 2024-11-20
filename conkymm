@@ -1,7 +1,7 @@
 #!/bin/bash
 sleep 1;
-conky -c ~/.conky/.conkyrc_first -a top_right -x 5 -y 30 &
-conky -c ~/.conky/.conkyrc_left -a top_left -x 5 -y 30 &
+conky -c ~/.conky/.conkyrc_first -x 3280 -y 1042 &
+conky -c ~/.conky/.conkyrc_left -x 1366 -y 1042 &
 #conky -c ~/.conky/.conkyrc_mid
 
 #sudo apt install lm-sensors hddtemp lunar

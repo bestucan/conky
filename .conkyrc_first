@@ -1,89 +1,97 @@
-### Conky settings ###
+conky.config = {
 
-background yes
-update_interval 5
+--[[alignment = 'top_right',
+gap_x = 5,
+gap_y = 30,]]
 
-cpu_avg_samples 2
-net_avg_samples 2
-
-override_utf8_locale yes
-
-double_buffer yes
-no_buffers yes
-
-#text_buffer_size 2048
+background = true,
+update_interval = 5,
 
 
-### Window specifications ###
+cpu_avg_samples = 2,
+net_avg_samples = 2,
 
-own_window yes
-#own_window_type conky
-#own_window_transparent yes
-own_window_argb_visual yes
-own_window_argb_value 0
+override_utf8_locale = true,
 
-#own_window_class Conky
+double_buffer = true,
+no_buffers = true,
 
-own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
-own_window_colour black
+--[[#text_buffer_size = 2048,]]
 
 
-border_inner_margin 0
-border_outer_margin 5
+--[[### Window specifications ###]]
+
+own_window = true,
+--[[#own_window_type = 'Conky',
+#own_window_transparent = true,]]
+
+own_window_argb_visual = true,
+own_window_argb_value = 0, --[[0-255 0%-100%]]
 
 
-### Adjust Accoring to screen ###
 
-minimum_size 300 560
-#maximum_width 1366
+--[[#own_window_class = Conky,]]
 
-alignment top_right
-gap_x 5
-gap_y 30
+own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+own_window_colour = 'black',
 
 
-### Graphics settings ###
-
-draw_shades no
-draw_outline no
-draw_borders no
-border_width 1
-draw_graph_borders no
+border_inner_margin = 0,
+border_outer_margin = 5,
 
 
-### Color settings ###
+--[[### Adjust Accoring to screen ###]]
 
-default_color gray
-default_outline_color blue
-default_shade_color blue
-color2 59BFFF
-# color5 1CBDBA
-color5 CCCCCC
-
-color1 A6D061 #98BD5D #00f5ff
-color3 A6D061 #98BD5D #00f5ff
-color4 ff7f50
-color4 ff0000
+minimum_height = 560,
+minimum_width = 300,
+--[[#maximum_width = 1366,]]
 
 
-### Text settings ###
 
-use_xft yes
-xftfont Monospace Regular:size=12
-#xftalpha 0.5
-uppercase no
-temperature_unit celsius
-short_units
 
-stippled_borders 1
-use_spacer right
-show_graph_scale no
-show_graph_range no
-out_to_console no
-out_to_stderr no
-extra_newline no
+--[[### Graphics settings ###]]
 
-TEXT
+draw_shades = false,
+draw_outline = false,
+draw_borders = false,
+border_width = 1,
+draw_graph_borders = false,
+
+
+--[[### Color settings ###]]
+
+default_color = gray,
+default_outline_color = blue,
+default_shade_color = blue,
+color2 = '59BFFF',
+--[[# color5 = '1CBDBA',]]
+color5 = 'CCCCCC',
+
+color1 = 'A6D061', --[[#98BD5D #00f5ff]]
+color3 = 'A6D061', --[[#98BD5D #00f5ff]]
+color4 = 'ff7f50',
+--[[color4 = 'ff0000',]]
+
+
+--[[### Text settings ###]]
+
+use_xft = true,
+font = 'Monospace Regular:size=12',
+--[[#xftalpha = 0.5,]]
+uppercase = false,
+temperature_unit = celsius,
+short_units,
+
+stippled_borders = 1,
+use_spacer = right,
+show_graph_scale = false,
+show_graph_range = false,
+out_to_console = false,
+out_to_stderr = false,
+extra_newline = false
+}
+--[[### ${exec hddtemp /dev/sda -n -u=C}°C ###]]
+conky.text = [[
 ${font Monospace Regular:style=Bold:pixelsize=22}${color gray}${alignc}${nodename}${font :pixelsize=17}
 ${offset 20}${color1}${uptime_short}${alignr}${color4}${exec sensors pch_skylake-virtual-0 | grep 'temp1:        +' | cut -c16-22}
 ${font :style=Bold:pixelsize=18}${color gray}STORAGE$hr${font Monospace Regular:pixelsize=17}
@@ -91,7 +99,7 @@ ${offset 20}${color1}/ ${alignr}${color1}${fs_free /} / ${fs_size /}
 ${offset 20}${color3}${fs_bar 6,280 /}
 ${offset 20}${color1}/home ${alignr}${color1}${fs_free /home}${color1} / ${fs_size /home}
 ${offset 20}${color3}${fs_bar 6,280 /home}
-${offset 20}${color1}Disk ${alignr}${color4}${exec hddtemp /dev/sda -n -u=C}°C
+${offset 20}${color1}Disk ${alignr}${color4}
 ${offset 20}${color3}I${alignr}${diskiograph_write 25,260 000000 CCCCCC}
 ${offset 20}${color3}O${alignr}${diskiograph_read 25,260 000000 CCCCCC}
 ${offset 20}${color1}Memory ${memperc}% ${alignr}${mem} / ${memmax}
@@ -100,16 +108,22 @@ ${offset 20}${color1}Swap ${swapperc}% ${alignr}${swap} / ${swapmax}
 ${offset 20}${color3}${swapbar 6,280}
 
 ${color gray}${font :style=Bold:pixelsize=18}CPU$hr${font Monospace Regular:pixelsize=17}
-${offset 20}${color1}Core 1 ${color4}${exec sensors | grep 'Core 0:' | cut -c18-19}°C${alignr}${color1}Core 2 ${color4}${exec sensors | grep 'Core 1:' | cut -c18-19}°C
-${offset 20}${color gray}${cpugauge 50,100 cpu1}${alignr}${cpugauge 50,100 cpu2}
-${offset 20}${color1}${freq_g 1}GHz | ${cpu cpu1}%${alignr}${freq_g 2}GHz | ${cpu cpu2}%
+${offset 20}${color gray}${cpugauge 50,100 cpu0}${alignr}${offset -20}${color gray}${cpugauge 50,100 cpu1}
+${offset 20}${color1}Core 0 ${color4}${exec sensors | grep 'Core 0:' | cut -c17-18}°C${alignr}${offset -20}${color1}Core 1 ${color4}${exec sensors | grep 'Core 1:' | cut -c17-18}°C
+${offset 20}${color1}${freq_g 0}GHz | ${cpu cpu0}%${alignr}${offset -7}${color1}${freq_g 1}GHz | ${cpu cpu1}%
+${offset 20}${color gray}${cpugauge 50,100 cpu2}${alignr}${offset -20}${color gray}${cpugauge 50,100 cpu3}
+${offset 20}${color1}Core 2 ${color4}${exec sensors | grep 'Core 2:' | cut -c17-18}°C${alignr}${offset -20}${color1}Core 3 ${color4}${exec sensors | grep 'Core 3:' | cut -c17-18}°C
+${offset 20}${color1}${freq_g 0}GHz | ${cpu cpu2}%${alignr}${offset -7}${color1}${freq_g 1}GHz | ${cpu cpu3}%
+${offset 20}${color gray}${cpugauge 50,100 cpu4}${alignr}${offset -20}${color gray}${cpugauge 50,100 cpu5}
+${offset 20}${color1}Core 4 ${color4}${exec sensors | grep 'Core 4:' | cut -c17-18}°C${alignr}${offset -20}${color1}Core 5 ${color4}${exec sensors | grep 'Core 5:' | cut -c17-18}°C
+${offset 20}${color1}${freq_g 0}GHz | ${cpu cpu4}%${alignr}${offset -7}${color1}${freq_g 1}GHz | ${cpu cpu5}%
 ${offset 20}${color3}${cpugraph 35,280 000000 CCCCCC}
 ${color gray}${font :style=Bold:pixelsize=18}NETWORK$hr${font Monospace Regular:pixelsize=17}
-${offset 20}${color1}IP addr ${alignr} ${color1} ${addr wlp4s0}
-${offset 20}${color1}Receiving${alignr}${downspeed wlp4s0}
-${offset 20}${color3}${downspeedgraph wlp4s0 30,280 000000 CCCCCC}
-${offset 20}${color1}Sending${alignr}${upspeed wlp4s0}
-${offset 20}${color3}${upspeedgraph wlp4s0 30,280 000000 CCCCCC}
+${offset 20}${color1}IP addr ${alignr} ${color1} ${addr enp2s0}
+${offset 20}${color1}Receiving${alignr}${downspeed enp2s0}
+${offset 20}${color3}${downspeedgraph enp2s0 30,280 000000 CCCCCC}
+${offset 20}${color1}Sending${alignr}${upspeed enp2s0}
+${offset 20}${color3}${upspeedgraph enp2s0 30,280 000000 CCCCCC}
 
 #${color #db7093}
 #${font Liberation Sans:style=Bold:pixelsize=30}${alignc}${time %H:%M}
@@ -118,7 +132,7 @@ ${offset 20}${color3}${upspeedgraph wlp4s0 30,280 000000 CCCCCC}
 #${color #59BFFF}CPU2  $color${cpu cpu2}% ${cpubar 4}
 
 #own_window_type normal
-#draw_shades yes
+#draw_shades true
 #draw_outline no
 #draw_borders no
 #draw_graph_borders no
@@ -126,3 +140,5 @@ ${offset 20}${color3}${upspeedgraph wlp4s0 30,280 000000 CCCCCC}
 #default_shade_color 000000
 #default_outline_color 000000
 #${color #59BFFF}${font Liberation Sans:style=Blod:size=17}${time %Y-%m-%d %H:%M}
+
+]]
